@@ -7,7 +7,7 @@ on:
 
 jobs:
   create-pr:
-    runs-on: ubuntu-latest
+    runs-on: test-runner
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v3
