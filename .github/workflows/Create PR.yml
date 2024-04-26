@@ -1,0 +1,24 @@
+name: Create PR from dev to stg
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: 'Merge dev into stg'
+          pr_body: 'Automatic PR to merge dev changes into staging'
+          destination_branch: 'stg'
+          source_branch: 'dev'
